@@ -1,21 +1,10 @@
 import Head from 'next/head'
-import Link from 'next/link';
-
-// const Item = styled(Paper)(({ theme }) => ({
-//     backgroundColor: theme.palette
-//         .mode === "dark" ? "#1A2027" : "#fff",
-    
-//     padding: theme.spacing(5),
-//     textAlign: "center",
-//     color: theme.palette.text.secondary,
-//     fontWeight: 'bolder',
-//}));
 
 // Static data fetching with revalidation.
 async function fetchSessions() {
   const response = await fetch(
     "https://conferenceapi.azurewebsites.net/sessions",
-    { next: {revalidate: 60} }
+    { next: { revalidate: 60 } }
   );
 
   const data = await response.json();
@@ -26,7 +15,7 @@ async function fetchSessions() {
 async function fetchSpeakers() {
   const response = await fetch(
     "https://conferenceapi.azurewebsites.net/speakers",
-    { next: {revalidate: 60} }
+    { next: { revalidate: 60 } }
   );
 
   const data = await response.json();
@@ -37,22 +26,22 @@ async function fetchSpeakers() {
 async function fetchTopics() {
   const response = await fetch(
     "https://conferenceapi.azurewebsites.net/topics",
-    { next: {revalidate: 60} }
+    { next: { revalidate: 60 } }
   );
 
   const data = await response.json();
   return data;
 }
 
-async function Home () {
-    const sessions = await fetchSessions();
-    //console.log(sessions.collection.items.length);
-    const speakers = await fetchSpeakers();
-    //console.log(speakers.collection.items.length);
-    const topics = await fetchTopics();
-    //console.log(topics.collection.items.length);
+async function Home() {
+  const sessions = await fetchSessions();
+  //console.log(sessions.collection.items.length);
+  const speakers = await fetchSpeakers();
+  //console.log(speakers.collection.items.length);
+  const topics = await fetchTopics();
+  //console.log(topics.collection.items.length);
 
-    return (
+  return (
     <>
       <Head>
         <title>Create Next App</title>
@@ -60,30 +49,6 @@ async function Home () {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <div>Sessions: {sessions.collection.items.length}</div>
-      <div>Speakers: {speakers.collection.items.length}</div>
-      <div>Topics: {topics.collection.items.length}</div> */}
-       {/* Three columns  */}
-        
-      {/* <div class="px-2">
-        <div class="flex mx-2 my-2 items-center">
-          <div class="w-1/3 px-2">
-            <div class="bg-blue-50 h-12">
-              Sessions: {sessions.collection.items.length}
-            </div>
-          </div>
-          <div class="w-1/3 px-2">
-            <div class="bg-red-50 h-12">
-              Speakers: {speakers.collection.items.length}
-            </div>
-          </div>
-          <div class="w-1/3 px-2">
-            <div class="bg-purple-50 h-12">
-              Topics: {topics.collection.items.length}
-            </div>
-          </div>
-        </div>
-      </div> */}
       <div class="flex my-16">
         <div class="flex flex-col bg-black text-white opacity-70 h-48 w-1/3 mx-14 items-center justify-center rounded-md shadow-2xl m-auto">
           <div>
@@ -103,60 +68,13 @@ async function Home () {
         </div>
         <div class="flex flex-col bg-black text-white opacity-70 h-48 w-1/3 mx-14 items-center justify-center rounded-md shadow-2xl">
           <div>
-            <div  class="text-3xl">Topics</div>
+            <div class="text-3xl">Topics</div>
           </div>
           <div>
             <span class="text-6xl">{topics.collection.items.length}</span>
           </div>
         </div>
       </div>
-      
-      {/* <ThemeProvider theme={theme}>
-      <Container maxWidth="xs">
-        <Paper sx={{ my: 4 }}>
-        <Grid container>
-          <Grid item md={12}>
-            <Box
-              sx={{
-                position: 'relative',
-                p: { xs: 3, md: 6 },
-                pr: { md: 0 },
-              }}
-            >
-              <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                post.title
-              </Typography>
-              <Typography variant="h5" color="inherit" paragraph>
-                post.description
-              </Typography>
-              <Link variant="subtitle1" href="#">
-                post.linkText
-              </Link>
-            </Box>
-          </Grid>
-        </Grid>
-        </Paper>
-        <Stack direction="row" spacing={5}>
-              <Item>
-                <Typography variant="h5" color="inherit">
-                  Item 1
-                </Typography>
-              </Item>
-              <Item>
-                <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                  post.title
-                </Typography>
-                <Typography variant="h5" color="inherit" paragraph>
-                  post.description
-                </Typography>
-                <Link variant="subtitle1" href="#">
-                  post.linkText
-                </Link>
-              </Item>
-              <Item>Item 3</Item>
-            </Stack>
-      </Container>
-      </ThemeProvider> */}
     </>
   )
 }
