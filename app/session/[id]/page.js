@@ -22,15 +22,19 @@ async function fetchTopics(id) {
 }
 
 const session = async({params}) => {
-    const data = await fetchSession(params.id);
-    const topics = await fetchTopics(params.id);
+    // Initiate both requests in parallel
+    const sessionData = fetchSession(params.id);
+    const topicsData = fetchTopics(params.id);
+
+    // Wait for the promises to resolve
+    const [session, topics] = await Promise.all([sessionData, topicsData]);
     //console.log(topics);
 
     return(
         <>
           <div class="w-auto font-bold h-12 flex items-center justify-center text-lg bg-black text-white opacity-70 rounded-sm">Conference details</div>
           <div class="bg-black text-white opacity-70 p-10 rounded-md my-5">
-            <div class="mb-5">{data}</div>
+            <div class="mb-5">{session}</div>
             <hr/>
             {topics.collection.items && topics.collection.items.length > 0 && 
                 <div class="mt-5">Topics covered - </div>
