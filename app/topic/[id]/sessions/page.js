@@ -1,6 +1,20 @@
 import Link from "next/link";
 import { Poppins } from '@next/font/google'
 const poppins = Poppins({ weight: '400', subsets: ['latin'], })
+import { fetchTopics } from "../../../topics/page";
+
+export async function generateStaticParams() {
+  const topics = await fetchTopics();
+
+  return topics.collection.items.map(({href}) => ({
+    id: href.split('/')[4],
+  }));
+  // return topics.collection.items.map(({links}) => {
+  //   links.map(({ href }) => ({
+  //     id: href.split('/')[4],                    
+  //   }))
+  // });
+}
 
 // Dynamic Data Fetching or Server Side Rendering
 async function fetchTopicSessions(id) {

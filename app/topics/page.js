@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 // Dynamic Data Fetching or Server Side Rendering
-async function fetchTopics() {
+export async function fetchTopics() {
   const response = await fetch(
     "https://conferenceapi.azurewebsites.net/topics/",
     { cache: "no-store" }
