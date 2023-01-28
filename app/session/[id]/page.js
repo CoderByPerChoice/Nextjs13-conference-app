@@ -1,4 +1,13 @@
 import Link from "next/link";
+import { fetchSessions } from "../../sessions/page";
+
+export async function generateStaticParams() {
+  const sessions = await fetchSessions();
+
+  return sessions.collection.items.map(({href}) => ({
+    id: href.split('/')[4],
+  }));
+}
 
 // Dynamic Data Fetching or Server Side Rendering
 async function fetchSession(id) {
@@ -32,22 +41,22 @@ const session = async({params}) => {
 
     return(
         <>
-          <div class="w-auto font-bold h-12 flex items-center justify-center text-lg bg-black text-white opacity-70 rounded-sm">Conference details</div>
-          <div class="bg-black text-white opacity-70 p-10 rounded-md my-5">
+          <div class="my-5 w-auto font-bold h-12 flex items-center justify-center text-lg bg-black text-white opacity-70 rounded-sm">Conference details</div>
+          <div class="bg-black text-white opacity-70 lg:p-10 md:p-10 p-2 rounded-md my-5">
             <div class="mb-5">{session}</div>
             <hr/>
             {topics.collection.items && topics.collection.items.length > 0 && 
-                <div class="mt-5">Topics covered - </div>
+                <div class="mt-5 text-center lg:text-left md:text-left">Topics covered - </div>
             }
             {topics.collection.items &&
               topics.collection.items.map(({ href, data, links }) => (
                 <div key={href}>
                     {data && data.map(({ value }) => (
-                        <h5>{value}</h5>
+                        <div key={value} class="text-center lg:text-left md:text-left">{value}</div>
                     ))}
                     {links &&
                     links.map(({ href }) => (
-                        <Link class="underline" href={`/topic/${href.split('/')[4]}/sessions`}><h5>Topic's Sessions</h5></Link>
+                        <Link key={href} class="underline text-center lg:text-left md:text-left" href={`/topic/${href.split('/')[4]}/sessions`}><h5>Sessions</h5></Link>
                     ))}
                 </div>
               ))}

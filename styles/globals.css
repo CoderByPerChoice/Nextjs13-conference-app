@@ -14,22 +14,19 @@
     font-size: large;
 }
 
-header {
+/* header {
     width: 100%;
     padding: 50px 0px 50px;
-    /* background: #f2f2f2; */
-    /* color: #f2d027; */
-}
+} */
 
-nav {
+/* nav {
     color: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
+} */
 
-Footer {
-    /* width: 100%; */
+/* Footer {
     height: 25px;
     padding: 0px 30px;
     background: #000000;
@@ -38,15 +35,15 @@ Footer {
     justify-content: flex-end;
     align-items: center;
     text-align: right;
-}
+} */
 
 .content {
-    min-height: calc(100vh - 40px);
+    min-height: calc(100vh - 45px);
 }
-
+/* 
 .stats {
     min-height: calc(100vh - 60px);
-}
+} */
 
 .hero {
     background-image: url('../public/Home.jpg');

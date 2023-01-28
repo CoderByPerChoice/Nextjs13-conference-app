@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 // Dynamic Data Fetching or Server Side Rendering
-async function fetchSpeakers() {
+export async function fetchSpeakers() {
   const response = await fetch(
     "https://conferenceapi.azurewebsites.net/speakers",
     { cache: "no-store" }
@@ -20,10 +20,10 @@ const speakers = async() => {
           <div class="flex flex-row flex-wrap gap-5 justify-around">
             {data.collection.items.map(
             ({ href, data, links }) => (
-            <div class="flex items-center justify-center bg-black text-white opacity-70 rounded shadow-lg h-24 w-1/5 my-5" key={href}>
+            <div data-aos='fade-down' data-aos-delay='100' class="flex flex-col md:flex-row items-center justify-center bg-black text-white opacity-70 rounded shadow-lg h-24 w-full md:w-1/5 my-5" key={href}>
                 {data &&
                 data.map(({ value }) => (
-                    <Link href={`/speaker/${href.split('/')[4]}`}>
+                    <Link key={value} href={`/speaker/${href.split('/')[4]}`}>
                       <div>{value}</div>
                     </Link>
                 ))}

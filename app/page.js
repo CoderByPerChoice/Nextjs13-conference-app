@@ -49,8 +49,8 @@ async function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div class="flex my-16">
-        <div class="flex flex-col bg-black text-white opacity-70 h-48 w-1/3 mx-14 items-center justify-center rounded-md shadow-2xl m-auto">
+      <div class="flex flex-col md:flex-row lg:flex-row lg:my-16 md:my-16">
+        <div data-aos='flip-left' data-aos-delay='500' class="lg:animate-pulse md:animate-pulse animate-none my-5 flex flex-col bg-black text-white opacity-70 h-48 lg:w-1/3 md:w-1/3 w-full lg:mx-14 md:mx-5 items-center justify-center rounded-md shadow-2xl">
           <div>
             <div class="text-3xl">Sessions</div>
           </div>
@@ -58,7 +58,7 @@ async function Home() {
             <span class="text-6xl">{sessions.collection.items.length}</span>
           </div>
         </div>
-        <div class="flex flex-col bg-black text-white opacity-70 h-48 w-1/3 mx-14 items-center justify-center rounded-md shadow-2xl">
+        <div data-aos='flip-left' data-aos-delay='300' class="lg:animate-pulse md:animate-pulse animate-none my-5 flex flex-col bg-black text-white opacity-70 h-48 lg:w-1/3 md:w-1/3 w-full lg:mx-14 md:mx-5 items-center justify-center rounded-md shadow-2xl">
           <div>
             <div class="text-3xl">Speakers</div>
           </div>
@@ -66,7 +66,7 @@ async function Home() {
             <span class="text-6xl">{speakers.collection.items.length}</span>
           </div>
         </div>
-        <div class="flex flex-col bg-black text-white opacity-70 h-48 w-1/3 mx-14 items-center justify-center rounded-md shadow-2xl">
+        <div data-aos='flip-left' data-aos-delay='100' class="lg:animate-pulse md:animate-pulse animate-none my-5 flex flex-col bg-black text-white opacity-70 h-48 lg:w-1/3 md:w-1/3 w-full lg:mx-14 md:mx-5 items-center justify-center rounded-md shadow-2xl">
           <div>
             <div class="text-3xl">Topics</div>
           </div>

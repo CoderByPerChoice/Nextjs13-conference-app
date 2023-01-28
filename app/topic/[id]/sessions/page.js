@@ -9,11 +9,6 @@ export async function generateStaticParams() {
   return topics.collection.items.map(({href}) => ({
     id: href.split('/')[4],
   }));
-  // return topics.collection.items.map(({links}) => {
-  //   links.map(({ href }) => ({
-  //     id: href.split('/')[4],                    
-  //   }))
-  // });
 }
 
 // Dynamic Data Fetching or Server Side Rendering
@@ -29,17 +24,17 @@ async function fetchTopicSessions(id) {
 
 const topicsessions = async({params}) => {
     const data = await fetchTopicSessions(params.id);
-    console.log(data);
+    //console.log(data);
     return (
         <div className={poppins.className}>
           <div class="w-auto font-bold h-12 flex items-center justify-center text-lg bg-black text-white opacity-70 rounded-sm">Topic Sessions</div>
             {data.collection.items.map(
             ({ href, data, links }) => (
-              <div class="bg-black text-white opacity-70 rounded shadow-lg" key={href}>
+              <div class="bg-black text-white opacity-70 rounded shadow-lg mb-5" key={href}>
             {data &&
               data.map(({ name, value }) => (
                 name === "Title" ?
-                  <Link class="w-auto flex items-center justify-center m-5 underline" href={`/session/${href.split('/')[4]}`}> <h3 class="mt-5">{name}: {value}</h3></Link>
+                  <Link key={value} class="w-auto flex items-center justify-center m-5 underline" href={`/session/${href.split('/')[4]}`}> <h3 class="mt-5">{name}: {value}</h3></Link>
                 :
                   name === "Timeslot" ?
                     <div class="w-auto flex items-center justify-center">{name}: {value}</div>
@@ -52,9 +47,9 @@ const topicsessions = async({params}) => {
               links.map(({ rel, href }) => (
                   
                     String(rel).includes("speaker") ? 
-                    <Link class="w-auto flex items-center justify-center m-5 underline" href={`/speaker/${href.split('/')[4]}`}><h5>Speaker's Bio</h5></Link>
+                    <Link key={href} class="w-auto flex items-center justify-center m-5 underline" href={`/speaker/${href.split('/')[4]}`}><h5>Speaker's Bio</h5></Link>
                     :
-                    <Link class="w-auto flex items-center justify-center underline" href={`/session/${href.split('/')[4]}`}><h5 class="mb-5">Session's Topics</h5></Link>
+                    <Link key={href} class="w-auto flex items-center justify-center underline" href={`/session/${href.split('/')[4]}`}><h5 class="mb-5">Session's Topics</h5></Link>
                   
               ))}
           </div>

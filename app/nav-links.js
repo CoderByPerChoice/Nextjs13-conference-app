@@ -3,15 +3,14 @@
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 
-const NavLink = ({ header, href, children }) => {
+const NavLink = ({ href, children }) => {
+    
     const segment = useSelectedLayoutSegment();
     const currentSegment = segment === null ? "" : segment;
     const active = href === `/${currentSegment}`;
-    //console.log(header);
-    //console.log(`/${currentSegment}`);
-
+ 
     return (
-        <Link className={active ? "text-2xl underline" : ""} href={href} >
+        <Link className={active ? "md:text-2xl lg:text-2xl underline" : "hover:bg-black hover:text-white transition-colors duration-500 p-2 rounded"} href={href} >
             {children}
         </Link>
     )

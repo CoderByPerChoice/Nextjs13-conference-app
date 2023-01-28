@@ -1,4 +1,13 @@
 import Link from "next/link";
+import { fetchSpeakers } from "../../speakers/page";
+
+export async function generateStaticParams() {
+  const speakers = await fetchSpeakers();
+
+  return speakers.collection.items.map(({href}) => ({
+    id: href.split('/')[4],
+  }));
+}
 
 // Dynamic Data Fetching or Server Side Rendering
 async function fetchSpeaker(id) {
@@ -38,7 +47,7 @@ const Page = async({params}) => {
                 {data &&
                   data.map(({ name, value }) => (
                     name === "Title" ?
-                      <Link class="underline" href={`/session/${href.split('/')[4]}`}> <h3>{name}: {value}</h3></Link>
+                      <Link key={value} class="underline" href={`/session/${href.split('/')[4]}`}> <h3>{name}: {value}</h3></Link>
                     :
                       <></>
                   ))}
