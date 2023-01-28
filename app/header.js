@@ -17,26 +17,28 @@ const Header = () => {
                     <path strokeLinecap='round' strokeLinejoin='round' d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
                 </svg>
             </div>
-            <nav className={`${openmenu ? 'hidden ' : '' }text-white flex flex-col md:flex-row absolute md:relative z-20 w-full bg-gray-800 md:bg-transparent opacity-80 md:flex justify-around items-center md:mt-5 lg:mt-5 md:mb-10 lg:mb-10`} >
-                <NavLink href="/">
-                    Home
-                </NavLink>
-                <h3>
+            <nav className={`${openmenu ? 'hidden ' : '' }text-white flex flex-col md:flex-row absolute md:relative z-20 w-full bg-gray-800 md:bg-transparent md:flex justify-around items-center md:mt-5 lg:mt-5 md:mb-10 lg:mb-10`} >
+                <h3 className='my-5'>
+                    <NavLink href="/">
+                        Home
+                    </NavLink>
+                </h3>
+                <h3 className='my-5'>
                     <NavLink href="/sessions">
                         Conferences
                     </NavLink>
                 </h3>
-                <h3>
+                <h3 className='my-5'>
                     <NavLink href="/speakers">
                         Speakers
                     </NavLink>
                 </h3>
-                <h3>
+                <h3 className='my-5'>
                     <NavLink href="/topics">
                         Topics
                     </NavLink>
                 </h3>
-                <h3>
+                <h3 className='my-5'>
                     <NavLink className='menuBarLinks' href="/aboutus" header={false}>
                         About Us
                     </NavLink>
